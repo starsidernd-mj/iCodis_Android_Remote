@@ -1,0 +1,99 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/remote_background"
+>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal = "true"
+        android:orientation="vertical"
+        android:weightSum="6"
+        android:layout_margin="5dp"
+    >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            >
+
+            <ImageButton
+                android:id="@+id/id_Button_ALL"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="@drawable/button_selector_red"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_09"
+                android:text="POWER ALL"
+                android:textAlignment="viewEnd"
+                android:textColor="#DE0505"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/id_Layout_Row_01"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        >
+
+    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/id_Layout_Row_02"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            >
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/id_Layout_Row_03"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            >
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/id_Layout_Row_04"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            >
+			
+			
+		</LinearLayout>
+        <LinearLayout
+            android:id="@+id/id_Layout_Row_05"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            >
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>
+

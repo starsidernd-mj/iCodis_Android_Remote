@@ -1,4 +1,4 @@
-package com.example.icodisremote;
+package com.starside_rnd.icodisremote;
 
 import org.junit.Test;
 

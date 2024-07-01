@@ -1,4 +1,4 @@
-package com.example.icodisremote;
+package com.starside_rnd.icodisremote;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.icodisremote", appContext.getPackageName());
+        assertEquals("com.starside_rnd.icodisremote", appContext.getPackageName());
     }
 }

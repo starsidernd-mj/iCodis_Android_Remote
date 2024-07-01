@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.icodisremote"
+    namespace = "com.starside_rnd.icodisremote"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.icodisremote"
+        applicationId = "com.starside_rnd.icodisremote"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

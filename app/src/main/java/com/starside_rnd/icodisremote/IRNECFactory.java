@@ -1,4 +1,4 @@
-package com.example.icodisremote;
+package com.starside_rnd.icodisremote;
 
 import java.util.ArrayList;
 import java.util.List;

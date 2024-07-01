@@ -53,67 +53,57 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         _buttonPowerAll = findViewById(R.id.id_Button_ALL);
 
+        //row 0 = vol-, mute, vol+
+        //row 1 = menu, settings, source
+        //row 2 = freeze, aspect, rotate, picture, color
+        //row 3 = back, ok
+        //row 4 = left, up, down, right
 
         if(bits == 8) {
-            _button[0] = createIRButton(R.drawable.icon_09,_rows[0],  new IRMessageRequest(IRNECFactory.create(0xcf, 0xef, 0, "MENU"    , bits)));
-            _button[1] = createIRButton(R.drawable.icon_04,_rows[1],  new IRMessageRequest(IRNECFactory.create(0x4f, 0xef, 0, "SOURCE"  , bits)));
-            _button[2] = createIRButton(R.drawable.icon_01,_rows[1],  new IRMessageRequest(IRNECFactory.create(0x8f, 0xef, 0, "FREEZE"  , bits)));
-            _button[3] = createIRButton(R.drawable.icon_09,_rows[1],  new IRMessageRequest(IRNECFactory.create(0x0f, 0xef, 0, "ROTATE"  , bits)));
-            _button[4] = createIRButton(R.drawable.icon_03,_rows[1],  new IRMessageRequest(IRNECFactory.create(0x17, 0xef, 0, "SETTINGS", bits)));
-            _button[5] = createIRButton(R.drawable.icon_05,_rows[2],  new IRMessageRequest(IRNECFactory.create(0x37, 0xef, 0, "VOL +"   , bits)));
-            _button[6] = createIRButton(R.drawable.icon_14,_rows[2],  new IRMessageRequest(IRNECFactory.create(0xb7, 0xef, 0, "VOL -"   , bits)));
-            _button[7] = createIRButton(R.drawable.icon_15,_rows[2],  new IRMessageRequest(IRNECFactory.create(0xd7, 0xef, 0, "MUTE"    , bits)));
-            _button[8] = createIRButton(R.drawable.icon_09,_rows[2],  new IRMessageRequest(IRNECFactory.create(0x57, 0xef, 0, "BACK"    , bits)));
-            _button[9] = createIRButton(R.drawable.icon_06,_rows[3], new IRMessageRequest(IRNECFactory.create(0xa7, 0xef, 0, "ASPECT"  , bits)));
-            _button[10] = createIRButton(R.drawable.icon_09,_rows[3], new IRMessageRequest(IRNECFactory.create(0x87, 0xef, 0, "PICTURE" , bits)));
-            _button[11] = createIRButton(R.drawable.icon_09,_rows[3], new IRMessageRequest(IRNECFactory.create(0x0d, 0xef, 0, "COLOR"   , bits)));
-            _button[12] = createIRButton(R.drawable.icon_09,_rows[3], new IRMessageRequest(IRNECFactory.create(0xc7, 0xef, 0, "OK"      , bits)));
-            _button[13] = createIRButton(R.drawable.icon_02,_rows[4], new IRMessageRequest(IRNECFactory.create(0xf5, 0xef, 0, "UP"      , bits)));
-            _button[14] = createIRButton(R.drawable.icon_13,_rows[4], new IRMessageRequest(IRNECFactory.create(0x75, 0xef, 0, "LEFT"    , bits)));
-            _button[15] = createIRButton(R.drawable.icon_11,_rows[4], new IRMessageRequest(IRNECFactory.create(0xb5, 0xef, 0, "RIGHT"   , bits)));
-            _button[16] = createIRButton(R.drawable.icon_12,_rows[4], new IRMessageRequest(IRNECFactory.create(0x35, 0xef, 0, "DOWN"    , bits)));
+            _button[0] = createIRButton(R.drawable.vol_down,        _rows[0],   new IRMessageRequest(IRNECFactory.create(0xb7, 0xef, 0, "VOL -"   , bits)));
+            _button[1] = createIRButton(R.drawable.mute,            _rows[0],   new IRMessageRequest(IRNECFactory.create(0xd7, 0xef, 0, "MUTE"    , bits)));
+            _button[2] = createIRButton(R.drawable.vol_up,          _rows[0],   new IRMessageRequest(IRNECFactory.create(0x37, 0xef, 0, "VOL +"   , bits)));
+            
+            _button[3] = createIRButton(R.drawable.menu_burger,     _rows[1],   new IRMessageRequest(IRNECFactory.create(0xcf, 0xef, 0, "MENU"    , bits)));
+            _button[4] = createIRButton(R.drawable.settings_sliders,_rows[1],   new IRMessageRequest(IRNECFactory.create(0x17, 0xef, 0, "SETTINGS", bits)));
+            _button[5] = createIRButton(R.drawable.source,          _rows[1],   new IRMessageRequest(IRNECFactory.create(0x4f, 0xef, 0, "SOURCE"  , bits)));
+            
+            _button[6] = createIRButton(R.drawable.freeze,          _rows[2],   new IRMessageRequest(IRNECFactory.create(0x8f, 0xef, 0, "FREEZE"  , bits)));
+            _button[7] = createIRButton(R.drawable.aspect,          _rows[2],   new IRMessageRequest(IRNECFactory.create(0xa7, 0xef, 0, "ASPECT"  , bits)));
+            _button[8] = createIRButton(R.drawable.rotate,          _rows[2],   new IRMessageRequest(IRNECFactory.create(0x0f, 0xef, 0, "ROTATE"  , bits)));
+            _button[9] = createIRButton(R.drawable.picture,         _rows[2],   new IRMessageRequest(IRNECFactory.create(0x87, 0xef, 0, "PICTURE" , bits)));
+            _button[10] = createIRButton(R.drawable.rad,            _rows[2],   new IRMessageRequest(IRNECFactory.create(0x0d, 0xef, 0, "COLOR"   , bits)));
+            
+            _button[11] = createIRButton(R.drawable.back,           _rows[3],   new IRMessageRequest(IRNECFactory.create(0x57, 0xef, 0, "BACK"    , bits)));
+            _button[12] = createIRButton(R.drawable.ok,             _rows[3],   new IRMessageRequest(IRNECFactory.create(0xc7, 0xef, 0, "OK"      , bits)));
+            
+            _button[13] = createIRButton(R.drawable.left,           _rows[4],   new IRMessageRequest(IRNECFactory.create(0x75, 0xef, 0, "LEFT"    , bits)));
+            _button[14] = createIRButton(R.drawable.up,             _rows[4],   new IRMessageRequest(IRNECFactory.create(0xf5, 0xef, 0, "UP"      , bits)));
+            _button[15] = createIRButton(R.drawable.down,           _rows[4],   new IRMessageRequest(IRNECFactory.create(0x35, 0xef, 0, "DOWN"    , bits)));
+            _button[16] = createIRButton(R.drawable.right,          _rows[4],   new IRMessageRequest(IRNECFactory.create(0xb5, 0xef, 0, "RIGHT"   , bits)));
         } else if(bits == 16) {
-            _button[0] = createIRButton(R.drawable.icon_09,_rows[0],  new IRMessageRequest(IRNECFactory.create(0x30cf, 0x10ef, 0, "MENU"    , bits)));
-            _button[1] = createIRButton(R.drawable.icon_04,_rows[1],  new IRMessageRequest(IRNECFactory.create(0xb04f, 0x10ef, 0, "SOURCE"  , bits)));
-            _button[2] = createIRButton(R.drawable.icon_01,_rows[1],  new IRMessageRequest(IRNECFactory.create(0x708f, 0x10ef, 0, "FREEZE"  , bits)));
-            _button[3] = createIRButton(R.drawable.icon_09,_rows[1],  new IRMessageRequest(IRNECFactory.create(0xf00f, 0x10ef, 0, "ROTATE"  , bits)));
-            _button[4] = createIRButton(R.drawable.icon_03,_rows[1],  new IRMessageRequest(IRNECFactory.create(0xe817, 0x10ef, 0, "SETTINGS", bits)));
-            _button[5] = createIRButton(R.drawable.icon_05,_rows[2],  new IRMessageRequest(IRNECFactory.create(0xc837, 0x10ef, 0, "VOL +"   , bits)));
-            _button[6] = createIRButton(R.drawable.icon_14,_rows[2],  new IRMessageRequest(IRNECFactory.create(0x48b7, 0x10ef, 0, "VOL -"   , bits)));
-            _button[7] = createIRButton(R.drawable.icon_15,_rows[2],  new IRMessageRequest(IRNECFactory.create(0x28d7, 0x10ef, 0, "MUTE"    , bits)));
-            _button[8] = createIRButton(R.drawable.icon_09,_rows[2],  new IRMessageRequest(IRNECFactory.create(0xa857, 0x10ef, 0, "BACK"    , bits)));
-            _button[9] = createIRButton(R.drawable.icon_06,_rows[3], new IRMessageRequest(IRNECFactory.create(0x58a7, 0x10ef, 0, "ASPECT"  , bits)));
-            _button[10] = createIRButton(R.drawable.icon_09,_rows[3], new IRMessageRequest(IRNECFactory.create(0x7887, 0x10ef, 0, "PICTURE" , bits)));
-            _button[11] = createIRButton(R.drawable.icon_09,_rows[3], new IRMessageRequest(IRNECFactory.create(0xf20d, 0x10ef, 0, "COLOR"   , bits)));
-            _button[12] = createIRButton(R.drawable.icon_09,_rows[3], new IRMessageRequest(IRNECFactory.create(0x38c7, 0x10ef, 0, "OK"      , bits)));
-            _button[13] = createIRButton(R.drawable.icon_02,_rows[4], new IRMessageRequest(IRNECFactory.create(0x0af5, 0x10ef, 0, "UP"      , bits)));
-            _button[14] = createIRButton(R.drawable.icon_13,_rows[4], new IRMessageRequest(IRNECFactory.create(0x8a75, 0x10ef, 0, "LEFT"    , bits)));
-            _button[15] = createIRButton(R.drawable.icon_11,_rows[4], new IRMessageRequest(IRNECFactory.create(0x4ab5, 0x10ef, 0, "RIGHT"   , bits)));
-            _button[16] = createIRButton(R.drawable.icon_12,_rows[4], new IRMessageRequest(IRNECFactory.create(0xca35, 0x10ef, 0, "DOWN"    , bits)));
+            _button[0] = createIRButton(R.drawable.vol_down,        _rows[0],   new IRMessageRequest(IRNECFactory.create(0x48b7, 0x10ef, 0, "VOL -"   , bits)));
+            _button[1] = createIRButton(R.drawable.mute,            _rows[0],   new IRMessageRequest(IRNECFactory.create(0x28d7, 0x10ef, 0, "MUTE"    , bits)));
+            _button[2] = createIRButton(R.drawable.vol_up,          _rows[0],   new IRMessageRequest(IRNECFactory.create(0xc837, 0x10ef, 0, "VOL +"   , bits)));
+            
+            _button[3] = createIRButton(R.drawable.menu_burger,     _rows[1],   new IRMessageRequest(IRNECFactory.create(0x30cf, 0x10ef, 0, "MENU"    , bits)));
+            _button[4] = createIRButton(R.drawable.settings_sliders,_rows[1],   new IRMessageRequest(IRNECFactory.create(0xe817, 0x10ef, 0, "SETTINGS", bits)));
+            _button[5] = createIRButton(R.drawable.source,          _rows[1],   new IRMessageRequest(IRNECFactory.create(0xb04f, 0x10ef, 0, "SOURCE"  , bits)));
+            
+            _button[6] = createIRButton(R.drawable.freeze,          _rows[2],   new IRMessageRequest(IRNECFactory.create(0x708f, 0x10ef, 0, "FREEZE"  , bits)));
+            _button[7] = createIRButton(R.drawable.aspect,          _rows[2],   new IRMessageRequest(IRNECFactory.create(0x58a7, 0x10ef, 0, "ASPECT"  , bits)));
+            _button[8] = createIRButton(R.drawable.rotate,          _rows[2],   new IRMessageRequest(IRNECFactory.create(0xf00f, 0x10ef, 0, "ROTATE"  , bits)));
+            _button[9] = createIRButton(R.drawable.picture,         _rows[2],   new IRMessageRequest(IRNECFactory.create(0x7887, 0x10ef, 0, "PICTURE" , bits)));
+            _button[10] = createIRButton(R.drawable.rad,            _rows[2],   new IRMessageRequest(IRNECFactory.create(0xf20d, 0x10ef, 0, "COLOR"   , bits)));
+            
+            _button[11] = createIRButton(R.drawable.back,           _rows[3],   new IRMessageRequest(IRNECFactory.create(0xa857, 0x10ef, 0, "BACK"    , bits)));
+            _button[12] = createIRButton(R.drawable.ok,             _rows[3],   new IRMessageRequest(IRNECFactory.create(0x38c7, 0x10ef, 0, "OK"      , bits)));
+            
+            _button[13] = createIRButton(R.drawable.left,           _rows[4],   new IRMessageRequest(IRNECFactory.create(0x8a75, 0x10ef, 0, "LEFT"    , bits)));
+            _button[14] = createIRButton(R.drawable.up,             _rows[4],   new IRMessageRequest(IRNECFactory.create(0x0af5, 0x10ef, 0, "UP"      , bits)));
+            _button[15] = createIRButton(R.drawable.down,           _rows[4],   new IRMessageRequest(IRNECFactory.create(0xca35, 0x10ef, 0, "DOWN"    , bits)));
+            _button[16] = createIRButton(R.drawable.right,          _rows[4],   new IRMessageRequest(IRNECFactory.create(0x4ab5, 0x10ef, 0, "RIGHT"   , bits)));
         }
-
-        /*_button[0] = createIRButton(R.drawable.icon_09,_rows[0], new IRMessageRequest(_irMessages.RD_POWER));
-        _button[1] = createIRButton(R.drawable.icon_09,_rows[0], new IRMessageRequest(_irMessages.RD_MENU));
-
-        _button[2] = createIRButton(R.drawable.icon_09,_rows[1], new IRMessageRequest(_irMessages.RD_SOURCE));
-        _button[3] = createIRButton(R.drawable.icon_09,_rows[1], new IRMessageRequest(_irMessages.RD_FREEZE_FRAME));
-        _button[4] = createIRButton(R.drawable.icon_09,_rows[1], new IRMessageRequest(_irMessages.RD_ROTATE_SCREEN));
-        _button[5] = createIRButton(R.drawable.icon_09,_rows[1], new IRMessageRequest(_irMessages.RD_SETTINGS));
-
-        _button[6] = createIRButton(R.drawable.icon_09,_rows[2], new IRMessageRequest(_irMessages.RD_VOL_UP));
-        _button[7] = createIRButton(R.drawable.icon_09,_rows[2], new IRMessageRequest(_irMessages.RD_VOL_DOWN));
-        _button[8] = createIRButton(R.drawable.icon_09,_rows[2], new IRMessageRequest(_irMessages.RD_MUTE));
-        _button[9] = createIRButton(R.drawable.icon_09,_rows[2], new IRMessageRequest(_irMessages.RD_BACK));
-
-        _button[10] = createIRButton(R.drawable.icon_09,_rows[3], new IRMessageRequest(_irMessages.RD_ASPECT));
-        _button[11] = createIRButton(R.drawable.icon_09,_rows[3], new IRMessageRequest(_irMessages.RD_PICTURE));
-        _button[12] = createIRButton(R.drawable.icon_09,_rows[3], new IRMessageRequest(_irMessages.RD_COLOR));
-        _button[13] = createIRButton(R.drawable.icon_09,_rows[3], new IRMessageRequest(_irMessages.RD_ENTER));
-
-        _button[14] = createIRButton(R.drawable.icon_09,_rows[4], new IRMessageRequest(_irMessages.RD_UP));
-        _button[15] = createIRButton(R.drawable.icon_09,_rows[4], new IRMessageRequest(_irMessages.RD_LEFT));
-        _button[16] = createIRButton(R.drawable.icon_09,_rows[4], new IRMessageRequest(_irMessages.RD_RIGHT));
-        _button[17] = createIRButton(R.drawable.icon_09,_rows[4], new IRMessageRequest(_irMessages.RD_DOWN));*/
 
         _lastBurstTime = System.nanoTime();
 

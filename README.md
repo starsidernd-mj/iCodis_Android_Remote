@@ -29,6 +29,59 @@ When I found buttons that did something, I made a list of their potential behavi
 Creating a remote control app. This was the tricky part as I don't have much experience coding an Android apk. But, with the help of various abandoned projects I'll link later, I cobbled together a remote control app.
 The protocol used was NEC with MSB format. The device address and commands in hex were transferred as 16 bit hex values.
 
+### Android Main Activity
+
+The main activity instantiates a couple linear layouts for placing buttons on the screen. One LinearLayout is for the 5 rows of buttons, and another LinearLayout is for the buttons themselves. This allows for placing resizable buttons in rows without defining the size of each button individually. 
+It also sets up the phone's vibration for each button press, the IR Controller and OnTouchListener.
+
+#### IRController
+
+This class sets up the ConsumerIRManager, which is what handles the IR hardware communication. Because it uses threading, the class will start a worker that handles whether to send a new message or wait.
+
+#### IRNECFactory
+
+The NEC factory generates the messages to be sent in the specific NEC format. The timing is obtained from the official NEC spec with the base unit timing being 560ns. This is used for generating the header, footer and each individual bit. Essentially, it creates a 1 or 0 for a certain time, which is interpretted by the receiver. 
+
+A command address is passed to the decodeInt method, which will generate a list of integers based on the value of each bit in the message.
+For example:
+
+address: 0x10ef
+in binary: 0b0001_0000_1110_1111
+msb
+Zero = 560ns
+One = 1680ns
+
+header: 560 560 560 560 560 560 1680 560 _ 560 560 560 560 560 560 560 560 _ 1680 560 1680 560 1680 560 560 560 _ 1680 560 1680 560 1680 560 1680 560
+
+Note: if sending this in 8 bit mode, must use the format ~address address, ~command command otherwise the message will be out of order.
+
+address 0xef		0b1110_1111
+~address 0x10	0b0001_0000
+
+decoded: 	1680 560 1680 560 1680 560 560 560 _ 1680 560 1680 560 1680 560 1680 560 
+~decoded:	560 560 560 560 560 560 1680 560 _ 560 560 560 560 560 560 560 560 
+
+
+The footer will look like this:
+
+footer: 560
+
+And sending a message like Power (0xd02f) will generate this message:
+
+message: 0xd02f
+in binary: 0b1101_0000_0010_1111
+msb
+
+message: 1680 560 1680 560 560 560 1680 560 _ 560 560 560 560 560 560 560 560 _ 560 560 560 560 1680 560 560 560 _ 1680 560 1680 560 1680 560 1680 560 
+
+So this final message with header and footer will look like this (_ is just for separating nibbles visually): 
+
+560 560 560 560 560 560 1680 560 _ 560 560 560 560 560 560 560 560 _ 1680 560 1680 560 1680 560 560 560 _ 1680 560 1680 560 1680 560 1680 560 _ 1680 560 1680 560 560 560 1680 560 _ 560 560 560 560 560 560 560 560 _ 560 560 560 560 1680 560 560 560 _ 1680 560 1680 560 1680 560 1680 560 _ 560
+
+Once generated, these values are added to each button as a tag. Upon pressing a button, this is sent to the IRController class, which queues it into the messageQueue for sending.
+
+## IR Codes
+
 Below is a list of the IR codes for anyone else wishing to use them.
 
 Device Address (0x10EF)

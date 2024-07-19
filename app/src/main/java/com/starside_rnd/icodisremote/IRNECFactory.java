@@ -49,11 +49,11 @@ public class IRNECFactory {
         //boolean MSB = false;
         
         if(bits == 8) {
-            header1 = decodeInt(address, MSB, bits);
-            header2 = decodeInt(~address, MSB, bits);
+            header1 = decodeInt(~address, MSB, bits);
+            header2 = decodeInt(address, MSB, bits);
 
-            data1 = decodeInt(command, MSB, bits);
-            data2 = decodeInt(~command, MSB, bits);
+            data1 = decodeInt(~command, MSB, bits);
+            data2 = decodeInt(command, MSB, bits);
             
             message.addAll(header1);
             message.addAll(header2);
